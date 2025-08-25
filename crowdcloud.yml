@@ -1,0 +1,23 @@
+project:
+  name: "http_sample_project"
+  description: "Sample project to test serverless runtime config"
+  version: "0.1.0"
+  owner: "your-team-name"
+
+run:
+  runtime: "python"
+  file: "main.py"
+  args:
+    --sample: args
+  timeout: 30s
+  memory: 256M
+
+input:
+  type: http # or args or stdin or file
+  allowed_routes: ["/process"]
+  allowed_methods: ["GET", "POST"]
+  health-check: "/health"
+
+output:
+  where: http
+  parser: json # or kv or raw
